@@ -75,11 +75,11 @@ function build() {
         // Read and Filter Images
         let files = fs.readdirSync(srcFolder).filter(f => f.match(/\.(webp|jpg|jpeg|png|gif)$/i));
         
-        // Sort by modification time (oldest first, newest last)
+        // Sort by creation time (oldest first, newest last)
         files.sort((a, b) => {
             const statA = fs.statSync(path.join(srcFolder, a));
             const statB = fs.statSync(path.join(srcFolder, b));
-            return statA.mtime.getTime() - statB.mtime.getTime();
+            return statA.birthtime.getTime() - statB.birthtime.getTime();
         });
 
         // Copy and Rename
